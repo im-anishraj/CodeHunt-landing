@@ -11,12 +11,14 @@ import { TeamSection } from "@/components/layout/sections/team";
 
 export const metadata = {
   title: "Code Hunt - Ultimate Programming Challenge",
-  description: "Test your logic, speed, and coding skills in 4 intense rounds: Quiz, Bug Hunting, Blind Coding, and Output Prediction.",
+  description:
+    "Test your logic, speed, and coding skills in 4 intense rounds: Quiz, Bug Hunting, Blind Coding, and Output Prediction. Compete with the best!",
   openGraph: {
     type: "website",
     url: "https://codehunt.com",
     title: "Code Hunt - Ultimate Programming Challenge",
-    description: "Join the most exciting tech competition of the year. 4 rounds of intense coding challenges.",
+    description:
+      "Join the most exciting tech competition of the year. 4 rounds of intense coding challenges.",
     images: [
       {
         url: "/og-image.jpg",
@@ -41,11 +43,11 @@ export default function Home() {
       <HeroSection />
       <QuizzesSection />
       <TimelineSection />
-      <PrizesSection />
       <RulesSection />
+      <PrizesSection />
       <TeamSection />
-      <CommunitySection />
       <FAQSection />
+      <CommunitySection />
       <ContactSection />
       <FooterSection />
     </>

@@ -1,9 +1,12 @@
+"use client";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { SectionWrapper } from "@/components/layout/section-wrapper";
+import { useScrollReveal } from "@/lib/use-scroll-reveal";
 
 interface FAQProps {
   question: string;
@@ -19,54 +22,53 @@ const FAQList: FAQProps[] = [
   },
   {
     question: "Who can participate in this challenge?",
-    answer:
-      "The competition is open to all students, developers, and tech enthusiasts who want to prove their coding mettle and compete for top prizes.",
+    answer: "The competition is open to all students, developers, and tech enthusiasts who want to prove their coding mettle and compete for top prizes.",
     value: "item-2",
   },
   {
-    question:
-      "Is there any registration fee?",
-    answer:
-      "Please refer to the registration details. Typically, we keep basic registration free to ensure everyone has a chance to show their talent.",
+    question: "Is there any registration fee?",
+    answer: "Please refer to the registration details. Typically, we keep basic registration free to ensure everyone has a chance to show their talent.",
     value: "item-3",
   },
   {
     question: "What are the prizes for the winners?",
-    answer: "We have exciting prizes for the top performers! Check the 'Prizes' section on the landing page specifically for the breakdown of perks and cash prizes.",
+    answer: "We have exciting prizes for the top performers! Check the 'Prizes' section on the landing page for the breakdown of perks and cash prizes.",
     value: "item-4",
   },
   {
-    question:
-      "What programming languages are supported?",
+    question: "What programming languages are supported?",
     answer: "Most rounds focus on language-agnostic logic, while coding-specific rounds typically support popular languages like Python, Java, C++, and JavaScript.",
     value: "item-5",
   },
 ];
 
 export const FAQSection = () => {
+  const { ref, isVisible } = useScrollReveal();
+
   return (
-    <section id="faq" className="container md:w-[700px] py-12 sm:py-16">
-      <div className="text-center mb-8">
-        <h2 className="text-[11px] font-semibold uppercase tracking-wider text-primary text-center mb-2 ">
-          FAQS
-        </h2>
-
-        <h2 className="text-[42px] font-heading font-semibold text-center">
-          Common Questions
-        </h2>
+    <SectionWrapper id="faq" label="FAQS" title="Common Questions" containerClass="max-w-2xl mx-auto">
+      <div ref={ref}>
+        <Accordion type="single" collapsible className="space-y-3">
+          {FAQList.map(({ question, answer, value }, idx) => (
+            <AccordionItem
+              key={value}
+              value={value}
+              className={`reveal ${isVisible ? "visible" : ""} glass-card rounded-xl px-5 border-none`}
+              style={{ transitionDelay: `${idx * 80}ms` }}
+            >
+              <AccordionTrigger className="text-left text-[15px] font-medium hover:no-underline py-5 text-foreground/90 hover:text-foreground">
+                <span className="flex items-center gap-3">
+                  <span className="text-primary/40 text-xs font-mono">{String(idx + 1).padStart(2, "0")}</span>
+                  {question}
+                </span>
+              </AccordionTrigger>
+              <AccordionContent className="text-muted-foreground text-[14px] leading-relaxed pb-5 pl-8">
+                {answer}
+              </AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
       </div>
-
-      <Accordion type="single" collapsible className="AccordionRoot">
-        {FAQList.map(({ question, answer, value }) => (
-          <AccordionItem key={value} value={value}>
-            <AccordionTrigger className="text-left">
-              {question}
-            </AccordionTrigger>
-
-            <AccordionContent>{answer}</AccordionContent>
-          </AccordionItem>
-        ))}
-      </Accordion>
-    </section>
+    </SectionWrapper>
   );
 };

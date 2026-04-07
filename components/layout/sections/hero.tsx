@@ -2,8 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Users } from "lucide-react";
-import Link from "next/link";
+import { ArrowRight, ArrowDown, Sparkles } from "lucide-react";
 
 const CountdownTimer = () => {
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
@@ -31,14 +30,32 @@ const CountdownTimer = () => {
     return () => clearInterval(interval);
   }, []);
 
-  if (!mounted) return null;
+  if (!mounted) {
+    return (
+      <div className="flex gap-3 sm:gap-4 justify-center p-1">
+        {["days", "hours", "minutes", "seconds"].map((label) => (
+          <div key={label} className="flex flex-col items-center glass-card p-3 sm:p-4 min-w-[60px] sm:min-w-[80px]">
+            <span className="font-mono text-2xl sm:text-3xl font-bold text-foreground leading-none">--</span>
+            <span className="text-[9px] sm:text-[10px] uppercase tracking-[0.15em] text-muted-foreground mt-1.5">{label}</span>
+          </div>
+        ))}
+      </div>
+    );
+  }
 
   return (
-    <div className="flex gap-2 sm:gap-3 justify-center p-1">
+    <div className="flex gap-3 sm:gap-4 justify-center p-1">
       {Object.entries(timeLeft).map(([label, value]) => (
-        <div key={label} className="flex flex-col items-center bg-card/60 backdrop-blur-md border border-white/5 p-1.5 sm:p-2 rounded-lg min-w-[50px] sm:min-w-[64px] shadow-lg">
-          <span className="font-heading text-xl sm:text-2xl font-bold text-foreground leading-none">{value.toString().padStart(2, '0')}</span>
-          <span className="text-[8px] sm:text-[9px] uppercase tracking-wider text-muted-foreground mt-0.5">{label}</span>
+        <div
+          key={label}
+          className="flex flex-col items-center glass-card p-3 sm:p-4 min-w-[60px] sm:min-w-[80px] animate-glow-pulse"
+        >
+          <span className="font-mono text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground leading-none">
+            {value.toString().padStart(2, '0')}
+          </span>
+          <span className="text-[9px] sm:text-[10px] uppercase tracking-[0.15em] text-muted-foreground mt-1.5 font-medium">
+            {label}
+          </span>
         </div>
       ))}
     </div>
@@ -47,36 +64,97 @@ const CountdownTimer = () => {
 
 export const HeroSection = () => {
   return (
-    <section className="container w-full min-h-[85vh] flex flex-col justify-center items-center">
+    <section className="container w-full min-h-[90vh] flex flex-col justify-center items-center relative overflow-hidden">
+      {/* Decorative code brackets */}
+      <div className="absolute top-[15%] left-[8%] text-primary/[0.06] text-[120px] font-mono font-bold select-none hidden lg:block animate-float">&lt;/&gt;</div>
+      <div className="absolute bottom-[15%] right-[8%] text-primary/[0.06] text-[100px] font-mono font-bold select-none hidden lg:block animate-float" style={{ animationDelay: '2s' }}>&#123;&#125;</div>
+
       <div className="flex flex-col items-center w-full lg:max-w-screen-xl mx-auto py-12 md:py-16">
-        <div className="text-center flex flex-col items-center space-y-6 relative z-10 w-full max-w-5xl px-2">
-          <div className="relative z-10 w-full">
-            <div className="hidden lg:block absolute inset-0 bg-gradient-to-r from-[#FF7A00]/10 to-[#FF7A00]/5 blur-[120px] -z-10" />
+        <div className="text-center flex flex-col items-center space-y-8 relative z-10 w-full max-w-5xl px-4">
+          {/* Countdown Timer */}
+          <div className="relative z-10 w-full animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
             <CountdownTimer />
           </div>
 
-          <Badge variant="outline" className="text-xs sm:text-sm py-1.5 px-4 rounded-full bg-background/50 backdrop-blur-md border border-primary/20 mb-2">
-            <span className="mr-2 text-primary flex items-center gap-1">
-              <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" /> New
-            </span>
-            <span className="truncate">Registrations Open!</span>
-          </Badge>
+          {/* Badge */}
+          <div className="animate-fade-in-up" style={{ animationDelay: '0.25s' }}>
+            <Badge
+              variant="outline"
+              className="text-xs sm:text-sm py-2 px-5 rounded-full bg-primary/[0.06] backdrop-blur-md border border-primary/20"
+            >
+              <span className="mr-2 text-primary flex items-center gap-1.5">
+                <span className="h-2 w-2 rounded-full bg-primary animate-pulse" />
+                Live
+              </span>
+              <span>Registrations Open!</span>
+            </Badge>
+          </div>
 
-          <h1 className="font-heading text-[38px] min-[400px]:text-[46px] sm:text-[64px] md:text-[76px] lg:text-[84px] font-bold tracking-[-2px] leading-[1.05] text-center w-full mx-auto">
-            Experience the Ultimate <br />
-            <span className="text-[#FF7A00]">Code Hunt</span> Challenge
+          {/* Heading */}
+          <h1
+            className="font-heading text-[36px] min-[400px]:text-[44px] sm:text-[60px] md:text-[72px] lg:text-[84px] font-bold tracking-[-0.03em] leading-[1.05] text-center w-full mx-auto animate-fade-in-up"
+            style={{ animationDelay: '0.4s' }}
+          >
+            Experience the Ultimate{" "}
+            <br className="hidden sm:block" />
+            <span className="bg-gradient-to-r from-[#FF8C00] via-[#FF6B00] to-[#FF4500] bg-clip-text text-transparent">
+              Code Hunt
+            </span>{" "}
+            Challenge
           </h1>
 
-          <p className="text-sm sm:text-base md:text-xl text-muted-foreground max-w-[800px] w-full leading-relaxed text-center mt-4 sm:mt-6 mx-auto px-4">
-            Master 4 intense tech rounds: from bug hunting to blind coding.<br />
+          {/* Subtitle */}
+          <p
+            className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-[700px] w-full leading-relaxed text-center mx-auto animate-fade-in-up"
+            style={{ animationDelay: '0.55s' }}
+          >
+            Master 4 intense tech rounds: from bug hunting to blind coding.
+            <br className="hidden sm:block" />
             Compete with the best and prove your ultimate skills.
           </p>
 
-          <div className="flex flex-col items-center justify-center mt-12 sm:mt-16 cursor-pointer">
-            <a href="#quizzes" className="text-muted-foreground hover:text-primary transition-colors flex flex-col items-center gap-3 group">
-              <span className="text-xs sm:text-sm font-medium tracking-widest uppercase opacity-70 group-hover:opacity-100 transition-opacity">Explore Events</span>
-              <div className="w-10 h-10 rounded-full border border-primary/20 flex items-center justify-center bg-primary/5 group-hover:bg-primary/10 transition-colors animate-bounce">
-                <ArrowRight className="w-5 h-5 rotate-90 text-primary" />
+          {/* CTA Buttons */}
+          <div
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-4 animate-fade-in-up"
+            style={{ animationDelay: '0.7s' }}
+          >
+            <Button
+              asChild
+              size="lg"
+              className="rounded-full bg-primary hover:bg-primary/90 text-white font-semibold px-8 h-12 text-base glow-btn group"
+            >
+              <a href="#contact">
+                <Sparkles className="w-4 h-4 mr-2" />
+                Register Now
+                <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+              </a>
+            </Button>
+            <Button
+              asChild
+              variant="outline"
+              size="lg"
+              className="rounded-full border-white/10 hover:border-white/20 hover:bg-white/[0.04] text-foreground font-medium px-8 h-12 text-base"
+            >
+              <a href="https://chat.whatsapp.com/DkimJc5mRUhBi6vqv5aysD?mode=gi_t" target="_blank">
+                Join WhatsApp
+              </a>
+            </Button>
+          </div>
+
+          {/* Scroll indicator */}
+          <div
+            className="flex flex-col items-center justify-center mt-12 sm:mt-16 cursor-pointer animate-fade-in-up"
+            style={{ animationDelay: '0.9s' }}
+          >
+            <a
+              href="#quizzes"
+              className="text-muted-foreground hover:text-primary transition-colors flex flex-col items-center gap-3 group"
+            >
+              <span className="text-[10px] sm:text-xs font-medium tracking-[0.2em] uppercase opacity-50 group-hover:opacity-100 transition-opacity">
+                Explore Rounds
+              </span>
+              <div className="w-8 h-8 rounded-full border border-primary/20 flex items-center justify-center bg-primary/5 group-hover:bg-primary/10 transition-all animate-bounce">
+                <ArrowDown className="w-4 h-4 text-primary" />
               </div>
             </a>
           </div>

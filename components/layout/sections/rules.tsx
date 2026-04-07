@@ -1,7 +1,11 @@
-import { Shield, Code2, Laptop } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+"use client";
+import { Shield, Code2, Laptop, Check } from "lucide-react";
+import { SectionWrapper } from "@/components/layout/section-wrapper";
+import { useScrollReveal } from "@/lib/use-scroll-reveal";
 
 export const RulesSection = () => {
+  const { ref, isVisible } = useScrollReveal();
+
   const ruleCategories = [
     {
       title: "Conduct",
@@ -9,81 +13,78 @@ export const RulesSection = () => {
       rules: [
         "Participants must compete individually.",
         "Ensure fair play and maintain proper conduct throughout the event.",
-        "Any attempt to disrupt other participants or the event will lead to disqualification.",
+        "Any attempt to disrupt other participants will lead to disqualification.",
         "Decisions made by the judges will be final and binding.",
       ],
-      color: "text-orange-500",
-      bgAlert: "bg-orange-500/10",
-      borderColor: "border-orange-500/20",
-      dotColor: "bg-orange-500"
+      color: "text-orange-400",
+      bgIcon: "bg-orange-400/10",
+      borderColor: "border-orange-400/15",
+      dotColor: "bg-orange-400",
     },
     {
       title: "Code",
       icon: Code2,
       rules: [
         "All code must be originally written during the event.",
-        "Plagiarism or copying from others will result in immediate disqualification.",
-        "Participants must follow the time limits strictly for each round.",
+        "Plagiarism or copying from others results in immediate disqualification.",
+        "Participants must follow time limits strictly for each round.",
       ],
-      color: "text-amber-500",
-      bgAlert: "bg-amber-500/10",
-      borderColor: "border-amber-500/20",
-      dotColor: "bg-amber-500"
+      color: "text-amber-400",
+      bgIcon: "bg-amber-400/10",
+      borderColor: "border-amber-400/15",
+      dotColor: "bg-amber-400",
     },
     {
       title: "Technology",
       icon: Laptop,
       rules: [
-        "No use of external AI coding assistants is allowed during live rounds.",
-        "No other cheating materials (notes, books, internet help, or external devices) are permitted.",
+        "No use of external AI coding assistants during live rounds.",
+        "No cheating materials (notes, books, internet help, or external devices).",
         "Use of unauthorized software or tools is strictly prohibited.",
       ],
       color: "text-teal-400",
-      bgAlert: "bg-teal-400/10",
-      borderColor: "border-teal-400/20",
-      dotColor: "bg-teal-400"
+      bgIcon: "bg-teal-400/10",
+      borderColor: "border-teal-400/15",
+      dotColor: "bg-teal-400",
     },
   ];
 
   return (
-    <section id="rules" className="container py-12 sm:py-16">
-      <div className="text-center mb-12">
-        <h2 className="text-[11px] font-semibold uppercase tracking-wider text-primary text-center mb-2 ">
-          The Fine Print
-        </h2>
-        <h2 className="text-[42px] font-heading font-semibold text-center">
-          Competition Rules
-        </h2>
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+    <SectionWrapper id="rules" label="The Fine Print" title="Competition Rules">
+      <div
+        ref={ref}
+        className="grid grid-cols-1 lg:grid-cols-3 gap-5 max-w-7xl mx-auto stagger-children"
+      >
         {ruleCategories.map((category, idx) => {
-          const IconStyle = category.icon;
+          const IconComp = category.icon;
           return (
-            <Card 
-              key={idx} 
-              className="bg-muted/30 border-white/5 shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-white/10 flex flex-col"
+            <div
+              key={idx}
+              className={`reveal ${isVisible ? "visible" : ""} glass-card p-6 rounded-2xl transition-all duration-500 hover:-translate-y-1 flex flex-col`}
             >
-              <CardHeader className="flex flex-row items-center gap-4 pb-3 pt-6 px-6">
-                <div className={`p-3 rounded-xl ${category.bgAlert} ${category.borderColor} border`}>
-                  <IconStyle className={`w-6 h-6 ${category.color}`} />
+              {/* Header */}
+              <div className="flex items-center gap-3 mb-6">
+                <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${category.bgIcon} border ${category.borderColor}`}>
+                  <IconComp className={`w-5 h-5 ${category.color}`} />
                 </div>
-                <CardTitle className="text-2xl font-bold">{category.title}</CardTitle>
-              </CardHeader>
-              <CardContent className="pt-4 pb-8 px-6 border-t border-white/5 mt-2">
-                <ul className="space-y-4">
-                  {category.rules.map((rule, ruleIdx) => (
-                    <li key={ruleIdx} className="flex gap-4 items-start">
-                      <div className={`mt-2 h-2 w-2 rounded-full shrink-0 ${category.dotColor}`}></div>
-                      <span className="text-muted-foreground text-[15.5px] leading-relaxed">{rule}</span>
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
+                <h3 className="text-xl font-bold">{category.title}</h3>
+              </div>
+
+              {/* Rules list */}
+              <ul className="space-y-4 flex-1">
+                {category.rules.map((rule, ruleIdx) => (
+                  <li key={ruleIdx} className="flex gap-3 items-start">
+                    <div className={`mt-0.5 w-5 h-5 rounded-md flex items-center justify-center shrink-0 ${category.bgIcon}`}>
+                      <Check className={`w-3 h-3 ${category.color}`} />
+                    </div>
+                    <span className="text-muted-foreground text-[14px] leading-relaxed">{rule}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           );
         })}
       </div>
-    </section>
+    </SectionWrapper>
   );
 };

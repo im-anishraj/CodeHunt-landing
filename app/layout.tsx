@@ -16,8 +16,9 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "code Hunt - Landing template",
-  description: "Landing template from code Hunt",
+  title: "Code Hunt - Ultimate Programming Challenge",
+  description:
+    "Test your logic, speed, and coding skills in 4 intense rounds. Compete with the best and prove your ultimate skills at Code Hunt.",
 };
 
 export default function RootLayout({
@@ -26,7 +27,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-br" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
           "min-h-screen font-sans",
@@ -41,22 +42,25 @@ export default function RootLayout({
           forcedTheme="dark"
           disableTransitionOnChange
         >
-          {/* Background Video Wrapper */}
-          <div className="fixed inset-0 z-[-1] bg-background">
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="w-full h-full object-cover opacity-100"
-            >
-              <source src="/images/original.mp4" type="video/mp4" />
-            </video>
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(0,0,0,0.94)_0%,_rgba(0,0,0,1)_100%)]" />
+          {/* Ambient Background */}
+          <div className="fixed inset-0 z-[-1] bg-background overflow-hidden">
+            {/* Subtle dot grid */}
+            <div className="absolute inset-0 bg-[radial-gradient(circle,_rgba(255,122,0,0.06)_1px,_transparent_1px)] bg-[size:40px_40px] opacity-30" />
+
+            {/* Primary glow — top left */}
+            <div className="absolute -top-[25%] -left-[10%] w-[50vw] h-[50vw] rounded-full bg-[radial-gradient(circle,_rgba(255,122,0,0.1)_0%,_transparent_70%)] blur-[100px] animate-[orbFloat_18s_ease-in-out_infinite]" />
+
+            {/* Secondary glow — bottom right */}
+            <div className="absolute -bottom-[20%] -right-[10%] w-[45vw] h-[45vw] rounded-full bg-[radial-gradient(circle,_rgba(255,80,0,0.08)_0%,_transparent_70%)] blur-[120px] animate-[orbFloat_22s_ease-in-out_infinite_reverse]" />
+
+            {/* Noise texture */}
+            <div className="absolute inset-0 opacity-[0.025]" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")` }} />
+
+            {/* Subtle vignette */}
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_0%,_rgba(0,0,0,0.4)_100%)]" />
           </div>
 
           <Navbar />
-
           {children}
         </ThemeProvider>
       </body>

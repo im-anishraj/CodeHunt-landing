@@ -84,12 +84,58 @@ module.exports = {
           from: { height: "var(--radix-collapsible-content-height)" },
           to: { height: 0 },
         },
+        orbFloat: {
+          "0%, 100%": { transform: "translate(0, 0)" },
+          "33%": { transform: "translate(30px, -40px)" },
+          "66%": { transform: "translate(-20px, 20px)" },
+        },
+        orbPulse: {
+          "0%, 100%": { transform: "translateX(-50%) scale(1)", opacity: "0.5" },
+          "50%": { transform: "translateX(-50%) scale(1.2)", opacity: "0.8" },
+        },
+        fadeInUp: {
+          from: { opacity: "0", transform: "translateY(30px)" },
+          to: { opacity: "1", transform: "translateY(0)" },
+        },
+        fadeInScale: {
+          from: { opacity: "0", transform: "scale(0.95)" },
+          to: { opacity: "1", transform: "scale(1)" },
+        },
+        shimmer: {
+          "0%": { backgroundPosition: "-200% center" },
+          "100%": { backgroundPosition: "200% center" },
+        },
+        float: {
+          "0%, 100%": { transform: "translateY(0px)" },
+          "50%": { transform: "translateY(-8px)" },
+        },
+        glowPulse: {
+          "0%, 100%": { boxShadow: "0 0 15px rgba(255,122,0,0.2)" },
+          "50%": { boxShadow: "0 0 30px rgba(255,122,0,0.4)" },
+        },
+        slideDown: {
+          from: { opacity: "0", transform: "translateY(-10px)" },
+          to: { opacity: "1", transform: "translateY(0)" },
+        },
+        pulse2: {
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0.5" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "collapsible-down": "collapsible-down 0.2s ease-in-out",
         "collapsible-up": "collapsible-up 0.2s ease-in-out",
+        "orb-float": "orbFloat 12s ease-in-out infinite",
+        "orb-pulse": "orbPulse 8s ease-in-out infinite",
+        "fade-in-up": "fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards",
+        "fade-in-scale": "fadeInScale 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards",
+        "shimmer": "shimmer 3s linear infinite",
+        "float": "float 4s ease-in-out infinite",
+        "glow-pulse": "glowPulse 3s ease-in-out infinite",
+        "slide-down": "slideDown 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards",
+        "pulse-slow": "pulse2 3s ease-in-out infinite",
       },
     },
   },
