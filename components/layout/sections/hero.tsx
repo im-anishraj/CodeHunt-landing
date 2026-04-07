@@ -11,8 +11,7 @@ const CountdownTimer = () => {
 
   useEffect(() => {
     setMounted(true);
-    const targetDate = new Date();
-    targetDate.setDate(targetDate.getDate() + 14);
+    const targetDate = new Date('2026-04-10T10:00:00');
 
     const interval = setInterval(() => {
       const now = new Date();
@@ -35,11 +34,11 @@ const CountdownTimer = () => {
   if (!mounted) return null;
 
   return (
-    <div className="flex gap-3 sm:gap-6 justify-center mt-8 p-4">
+    <div className="flex gap-2 sm:gap-3 justify-center p-1">
       {Object.entries(timeLeft).map(([label, value]) => (
-        <div key={label} className="flex flex-col items-center bg-card/60 backdrop-blur-md border border-white/5 p-3 sm:p-4 rounded-2xl min-w-[70px] sm:min-w-[100px] shadow-2xl">
-          <span className="font-heading text-3xl sm:text-5xl font-bold text-foreground leading-none">{value.toString().padStart(2, '0')}</span>
-          <span className="text-[10px] sm:text-[11px] uppercase tracking-wider text-muted-foreground mt-2">{label}</span>
+        <div key={label} className="flex flex-col items-center bg-card/60 backdrop-blur-md border border-white/5 p-1.5 sm:p-2 rounded-lg min-w-[50px] sm:min-w-[64px] shadow-lg">
+          <span className="font-heading text-xl sm:text-2xl font-bold text-foreground leading-none">{value.toString().padStart(2, '0')}</span>
+          <span className="text-[8px] sm:text-[9px] uppercase tracking-wider text-muted-foreground mt-0.5">{label}</span>
         </div>
       ))}
     </div>
@@ -51,7 +50,11 @@ export const HeroSection = () => {
     <section className="container w-full min-h-[85vh] flex flex-col justify-center items-center">
       <div className="flex flex-col items-center w-full lg:max-w-screen-xl mx-auto py-12 md:py-16">
         <div className="text-center flex flex-col items-center space-y-6 relative z-10 w-full max-w-5xl px-2">
-          
+          <div className="relative z-10 w-full">
+            <div className="hidden lg:block absolute inset-0 bg-gradient-to-r from-[#FF7A00]/10 to-[#FF7A00]/5 blur-[120px] -z-10" />
+            <CountdownTimer />
+          </div>
+
           <Badge variant="outline" className="text-xs sm:text-sm py-1.5 px-4 rounded-full bg-background/50 backdrop-blur-md border border-primary/20 mb-2">
             <span className="mr-2 text-primary flex items-center gap-1">
               <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" /> New
@@ -74,14 +77,7 @@ export const HeroSection = () => {
               Get Started
               <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
             </Button>
-            
-
           </div>
-        </div>
-
-        <div className="relative z-10 w-full mt-12 sm:mt-16 md:mt-20">
-          <div className="hidden lg:block absolute inset-0 bg-gradient-to-r from-[#FF7A00]/10 to-[#FF7A00]/5 blur-[120px] -z-10" />
-          <CountdownTimer />
         </div>
       </div>
     </section>
