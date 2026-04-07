@@ -41,7 +41,7 @@ const guests: TeamProps[] = [
   },
   {
     imageUrl: "/images/Mr. Pawan Sen.png",
-    firstName: "Dr. Pawan",
+    firstName: "Mr. Pawan",
     lastName: "Sen",
     positions: ["Guest"],
     socialNetworks: [],
@@ -133,64 +133,82 @@ const socialIcon = (socialName: string) => {
   }
 };
 
-const TeamGrid = ({ title, members, columns = "lg:grid-cols-3" }: { title: string, members: TeamProps[], columns?: string }) => (
+const TeamGrid = ({
+  title,
+  members,
+  columns = "lg:grid-cols-3",
+}: {
+  title: string;
+  members: TeamProps[];
+  columns?: string;
+}) => (
   <div className="mb-20">
     <h3 className="text-3xl font-semibold text-center mb-10 text-primary border-b border-primary/20 pb-4 max-w-xl mx-auto">
       {title}
     </h3>
-    <div className={`grid grid-cols-1 sm:grid-cols-2 ${columns} gap-6 max-w-4xl mx-auto`}>
-      {members.map(({ imageUrl, firstName, lastName, positions, socialNetworks }, index) => (
-        <Card
-          key={index}
-          className="bg-muted/60 dark:bg-card flex flex-col items-center text-center h-full overflow-hidden group/hoverimg border-secondary pt-8 px-4 pb-6 transition-all duration-300 hover:shadow-lg hover:border-primary/30"
-        >
-          {/* Circular Image Container */}
-          <div className="w-32 h-32 md:w-36 md:h-36 shrink-0 relative bg-secondary/20 flex flex-col items-center justify-center overflow-hidden rounded-full shadow-[0_4px_12px_rgba(255,122,0,0.1)] border border-primary/20 mb-5 group-hover/hoverimg:scale-105 transition-transform duration-500">
-            {imageUrl ? (
-              <Image 
-                src={imageUrl} 
-                alt={`${firstName} ${lastName}`} 
-                fill 
-                className="object-cover object-top" 
-              />
-            ) : (
-              <User className="w-14 h-14 text-muted-foreground/30" strokeWidth={1.5} />
-            )}
-          </div>
+    <div
+      className={`grid grid-cols-1 sm:grid-cols-2 ${columns} gap-6 max-w-4xl mx-auto`}
+    >
+      {members.map(
+        (
+          { imageUrl, firstName, lastName, positions, socialNetworks },
+          index,
+        ) => (
+          <Card
+            key={index}
+            className="bg-muted/60 dark:bg-card flex flex-col items-center text-center h-full overflow-hidden group/hoverimg border-secondary pt-8 px-4 pb-6 transition-all duration-300 hover:shadow-lg hover:border-primary/30"
+          >
+            {/* Circular Image Container */}
+            <div className="w-32 h-32 md:w-36 md:h-36 shrink-0 relative bg-secondary/20 flex flex-col items-center justify-center overflow-hidden rounded-full shadow-[0_4px_12px_rgba(255,122,0,0.1)] border border-primary/20 mb-5 group-hover/hoverimg:scale-105 transition-transform duration-500">
+              {imageUrl ? (
+                <Image
+                  src={imageUrl}
+                  alt={`${firstName} ${lastName}`}
+                  fill
+                  className="object-cover object-top"
+                />
+              ) : (
+                <User
+                  className="w-14 h-14 text-muted-foreground/30"
+                  strokeWidth={1.5}
+                />
+              )}
+            </div>
 
-          <CardHeader className="p-0 mb-3">
-            <CardTitle className="text-[19px] tracking-tight">
-              {firstName}
-              <span className="text-primary ml-1.5">{lastName}</span>
-            </CardTitle>
-          </CardHeader>
-          <div className="flex-1 space-y-1 mb-2">
-            {positions.map((position, index) => (
-              <p
-                key={index}
-                className="text-muted-foreground text-[13px] font-medium"
-              >
-                {position}
-              </p>
-            ))}
-          </div>
-
-          {socialNetworks.length > 0 && (
-            <CardFooter className="p-0 mt-3 space-x-4">
-              {socialNetworks.map(({ name, url }, index) => (
-                <Link
+            <CardHeader className="p-0 mb-3">
+              <CardTitle className="text-[19px] tracking-tight">
+                {firstName}
+                <span className="text-primary ml-1.5">{lastName}</span>
+              </CardTitle>
+            </CardHeader>
+            <div className="flex-1 space-y-1 mb-2">
+              {positions.map((position, index) => (
+                <p
                   key={index}
-                  href={url}
-                  target="_blank"
-                  className="hover:opacity-80 transition-all"
+                  className="text-muted-foreground text-[13px] font-medium"
                 >
-                  {socialIcon(name)}
-                </Link>
+                  {position}
+                </p>
               ))}
-            </CardFooter>
-          )}
-        </Card>
-      ))}
+            </div>
+
+            {socialNetworks.length > 0 && (
+              <CardFooter className="p-0 mt-3 space-x-4">
+                {socialNetworks.map(({ name, url }, index) => (
+                  <Link
+                    key={index}
+                    href={url}
+                    target="_blank"
+                    className="hover:opacity-80 transition-all"
+                  >
+                    {socialIcon(name)}
+                  </Link>
+                ))}
+              </CardFooter>
+            )}
+          </Card>
+        ),
+      )}
     </div>
   </div>
 );
@@ -208,8 +226,16 @@ export const TeamSection = () => {
       </div>
 
       <TeamGrid title="Special Guests" members={guests} />
-      <TeamGrid title="Faculty Coordinators" members={facultyCoordinators} columns="lg:grid-cols-2 max-w-2xl" />
-      <TeamGrid title="Organiser and coordinators" members={studentCoordinators} columns="lg:grid-cols-5" />
+      <TeamGrid
+        title="Faculty Coordinators"
+        members={facultyCoordinators}
+        columns="lg:grid-cols-2 max-w-2xl"
+      />
+      <TeamGrid
+        title="Organiser and coordinators"
+        members={studentCoordinators}
+        columns="lg:grid-cols-5"
+      />
     </section>
   );
 };

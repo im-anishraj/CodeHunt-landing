@@ -34,11 +34,6 @@ const routeList: RouteProps[] = [
   { href: "#team", label: "Team" },
 ];
 
-const groupedRoutes: RouteProps[] = [
-  { href: "#rules", label: "Rules" },
-  { href: "#faq", label: "FAQ" },
-  { href: "#contact", label: "Contact" },
-];
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -104,21 +99,6 @@ export const Navbar = () => {
                     <Link href={href}>{label}</Link>
                   </Button>
                 ))}
-                
-                <Separator className="my-2" />
-                <div className="px-4 text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">More</div>
-                
-                {groupedRoutes.map(({ href, label }) => (
-                  <Button
-                    key={href}
-                    onClick={() => setIsOpen(false)}
-                    asChild
-                    variant="ghost"
-                    className="justify-start text-base"
-                  >
-                    <Link href={href}>{label}</Link>
-                  </Button>
-                ))}
               </div>
             </div>
             <SheetFooter className="flex-col sm:flex-col justify-start items-start">
@@ -138,28 +118,6 @@ export const Navbar = () => {
               </NavigationMenuLink>
             </NavigationMenuItem>
           ))}
-          
-          <NavigationMenuItem>
-            <NavigationMenuTrigger className="text-[15px] font-medium bg-transparent hover:bg-muted/50 rounded-full transition-colors text-foreground/80 hover:text-foreground">
-              More
-            </NavigationMenuTrigger>
-            <NavigationMenuContent>
-              <ul className="grid w-[200px] gap-2 p-4 bg-card/95 backdrop-blur-md rounded-2xl border border-border shadow-xl">
-                {groupedRoutes.map(({ href, label }) => (
-                  <li key={href}>
-                    <NavigationMenuLink asChild>
-                      <Link
-                        href={href}
-                        className="block select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-muted hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                      >
-                        <div className="text-[15px] font-medium leading-none">{label}</div>
-                      </Link>
-                    </NavigationMenuLink>
-                  </li>
-                ))}
-              </ul>
-            </NavigationMenuContent>
-          </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
 

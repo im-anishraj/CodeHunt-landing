@@ -72,11 +72,13 @@ export const HeroSection = () => {
             Compete with the best and prove your ultimate skills.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-6 items-center justify-center mt-8 sm:mt-10">
-            <Button className="h-[48px] sm:h-[52px] rounded-full px-8 bg-[#FF7A00] hover:bg-[#E66E00] text-white font-semibold text-base sm:text-lg group w-full sm:w-auto shadow-[0_0_20px_rgba(255,122,0,0.3)] border-0">
-              Get Started
-              <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-            </Button>
+          <div className="flex flex-col items-center justify-center mt-12 sm:mt-16 cursor-pointer">
+            <a href="#quizzes" className="text-muted-foreground hover:text-primary transition-colors flex flex-col items-center gap-3 group">
+              <span className="text-xs sm:text-sm font-medium tracking-widest uppercase opacity-70 group-hover:opacity-100 transition-opacity">Explore Events</span>
+              <div className="w-10 h-10 rounded-full border border-primary/20 flex items-center justify-center bg-primary/5 group-hover:bg-primary/10 transition-colors animate-bounce">
+                <ArrowRight className="w-5 h-5 rotate-90 text-primary" />
+              </div>
+            </a>
           </div>
         </div>
       </div>

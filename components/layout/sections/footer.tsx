@@ -18,7 +18,11 @@ export const FooterSection = () => {
           <div className="flex flex-col gap-2">
             <h3 className="font-bold text-lg">Socials</h3>
             <div>
-              <Link href="https://chat.whatsapp.com/DkimJc5mRUhBi6vqv5aysD?mode=gi_t" target="_blank" className="opacity-60 hover:opacity-100">
+              <Link
+                href="https://chat.whatsapp.com/DkimJc5mRUhBi6vqv5aysD?mode=gi_t"
+                target="_blank"
+                className="opacity-60 hover:opacity-100"
+              >
                 WhatsApp
               </Link>
             </div>
