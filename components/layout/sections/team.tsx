@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/card";
 import Image from "next/image";
 import Link from "next/link";
-import { User } from "lucide-react";
+import { User, Phone } from "lucide-react";
 
 interface TeamProps {
   imageUrl: string | null;
@@ -47,7 +47,7 @@ const guests: TeamProps[] = [
     socialNetworks: [],
   },
   {
-    imageUrl: null,
+    imageUrl: "/images/Ajay-saini.png",
     firstName: "Dr. Ajay",
     lastName: "Saini",
     positions: ["Guest"],
@@ -75,14 +75,18 @@ const facultyCoordinators: TeamProps[] = [
     firstName: "Sagar",
     lastName: "Pradhan",
     positions: ["Faculty Coordinator"],
-    socialNetworks: [],
+    socialNetworks: [
+      { name: "Phone", url: "tel:+917610915647" }
+    ],
   },
   {
     imageUrl: null,
     firstName: "Ajay",
     lastName: "Swarnkar",
     positions: ["Faculty Coordinator"],
-    socialNetworks: [],
+    socialNetworks: [
+      { name: "Phone", url: "tel:+919929880347" }
+    ],
   },
 ];
 
@@ -92,14 +96,18 @@ const studentCoordinators: TeamProps[] = [
     firstName: "Mohit",
     lastName: "Kumhar",
     positions: ["Organiser"],
-    socialNetworks: [],
+    socialNetworks: [
+      { name: "Phone", url: "tel:+917976127452" }
+    ],
   },
   {
     imageUrl: null,
     firstName: "Anish",
     lastName: "Raj",
     positions: ["Organiser"],
-    socialNetworks: [],
+    socialNetworks: [
+      { name: "Phone", url: "tel:+919060872477" }
+    ],
   },
   {
     imageUrl: null,
@@ -130,6 +138,8 @@ const socialIcon = (socialName: string) => {
       return <LinkedInIcon />;
     case "X":
       return <XIcon />;
+    case "Phone":
+      return <Phone className="w-5 h-5 text-muted-foreground hover:text-primary transition-colors" />;
   }
 };
 
@@ -193,15 +203,20 @@ const TeamGrid = ({
             </div>
 
             {socialNetworks.length > 0 && (
-              <CardFooter className="p-0 mt-3 space-x-4">
+              <CardFooter className="p-0 mt-3 flex flex-wrap justify-center gap-4">
                 {socialNetworks.map(({ name, url }, index) => (
                   <Link
                     key={index}
                     href={url}
                     target="_blank"
-                    className="hover:opacity-80 transition-all"
+                    className="hover:opacity-80 transition-all flex items-center gap-2 group/social"
                   >
                     {socialIcon(name)}
+                    {name === "Phone" && (
+                      <span className="text-[14px] font-medium text-muted-foreground group-hover/social:text-primary transition-colors whitespace-nowrap">
+                        +91 {url.replace("tel:+91", "")}
+                      </span>
+                    )}
                   </Link>
                 ))}
               </CardFooter>
