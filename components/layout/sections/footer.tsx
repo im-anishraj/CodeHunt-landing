@@ -27,7 +27,7 @@ export const FooterSection = () => {
               The ultimate programming challenge. 4 rounds. One champion.
               <br />
               <span className="text-primary/60 font-mono text-xs">
-                April 10, 2026
+                April 11, 2026
               </span>
             </p>
           </div>
