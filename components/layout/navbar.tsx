@@ -67,7 +67,7 @@ export const Navbar = () => {
           asChild
           className="rounded-full bg-primary hover:bg-primary/90 text-white font-semibold px-4 h-9 border-0 glow-btn text-sm"
         >
-          <a href="#contact">Register</a>
+          <a href="https://forms.gle/kecBhr7TM8Z6s2ie8">Register</a>
         </Button>
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
           <SheetTrigger asChild>
