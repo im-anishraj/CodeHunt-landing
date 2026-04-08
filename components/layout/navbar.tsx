@@ -84,7 +84,10 @@ export const Navbar = () => {
             <div>
               <SheetHeader className="mb-4 ml-4">
                 <SheetTitle className="flex items-center">
-                  <Link href="/" className="flex items-center font-heading font-bold text-lg">
+                  <Link
+                    href="/"
+                    className="flex items-center font-heading font-bold text-lg"
+                  >
                     <span className="text-primary">&lt;</span>
                     Code Hunt
                     <span className="text-primary">/&gt;</span>
@@ -134,7 +137,7 @@ export const Navbar = () => {
           asChild
           className="rounded-full bg-primary hover:bg-primary/90 text-white font-semibold px-6 h-10 glow-btn border-0"
         >
-          <a href="#contact">Register Now</a>
+          <a href="https://forms.gle/kecBhr7TM8Z6s2ie8">Register Now</a>
         </Button>
       </div>
     </header>

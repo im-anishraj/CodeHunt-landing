@@ -148,7 +148,7 @@ export const HeroSection = () => {
               size="lg"
               className="rounded-full bg-primary hover:bg-primary/90 text-white font-semibold px-8 h-12 text-base glow-btn group"
             >
-              <a href="#contact">
+              <a href="https://forms.gle/kecBhr7TM8Z6s2ie8">
                 <Sparkles className="w-4 h-4 mr-2" />
                 Register Now
                 <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
